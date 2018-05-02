@@ -1,0 +1,36 @@
+$ az login
+
+$ az account list
+
+```
+[
+  {
+    "cloudName": "AzureCloud",
+    "id": "5ad2b48e-9b2d-43f4-8aec-f41ff806305e", #SUBSCRIPTION_ID
+    "isDefault": true,
+    "name": "Pay-As-You-Go",
+    "state": "Enabled",
+    "tenantId": "a80bc3f3-d90b-41bb-a54c-f016db153d89",
+    "user": {
+      "name": "c0baktr@gmail.com",
+      "type": "user"
+    }
+  }
+]
+```
+
+$ az account set --subscription="5ad2b48e-9b2d-43f4-8aec-f41ff806305e"
+
+$ az ad sp create-for-rbac --role="Contributor" --scopes="/subscriptions/5ad2b48e-9b2d-43f4-8aec-f41ff806305e"
+
+```
+{
+  "appId": "0895667b-90b8-4b84-abf2-dbbe2f411142",
+  "displayName": "azure-cli-2018-04-24-00-58-29",
+  "name": "http://azure-cli-2018-04-24-00-58-29",
+  "password": "cc363969-348a-47fa-9e47-4f083ab3c2ba",
+  "tenant": "a80bc3f3-d90b-41bb-a54c-f016db153d89"
+}
+```
+
+az login --service-principal -u 0895667b-90b8-4b84-abf2-dbbe2f411142 -p cc363969-348a-47fa-9e47-4f083ab3c2ba --tenant a80bc3f3-d90b-41bb-a54c-f016db153d89
